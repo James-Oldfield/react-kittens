@@ -12,7 +12,19 @@ export default class Kitten extends Component {
     this.handleDelete = this.handleDelete.bind(this);
 
     this.state = {
-      editing: false
+      editing: false,
+      kittenStyles: {
+        margin: '5px 0',
+        listStyle: 'none',
+        color: 'tomato',
+        border: 'solid tomato 5px',
+        padding: '20px',
+        fontSize: '30px',
+      },
+      inputStyles: {
+        fontSize: '20px',
+        color: 'tomato'
+      }
     };
   };
   render() {
@@ -20,9 +32,8 @@ export default class Kitten extends Component {
 
     const kittenNodes = this.props.kittens.map((kitten, index) => {
       return (
-        <div key={index} className="kittenNode">
+        <div style={this.state.kittenStyles} key={index} className="kittenNode">
           { editing ? this.renderEdit(kitten, index) : this.renderKitten(kitten, index) }
-          <button id={kitten.id} onClick={this.handleDelete}>x</button>
         </div>
       );
     });
@@ -37,12 +48,16 @@ export default class Kitten extends Component {
   };
   renderKitten(k, i) {
     return (
-      <li key={i} onClick={this.edit}> {k.type} 🐱 </li>
+      <li key={i}> 
+        <span onClick={this.edit}>{k.type} 🐱 </span>
+        <span id={k.id} onClick={this.handleDelete}>x</span>
+      </li>
     );
   };
   renderEdit(k, i) {
     return (
       <input
+        style={this.state.inputStyles}
         key={i}
         id={k.id} 
         type="text"

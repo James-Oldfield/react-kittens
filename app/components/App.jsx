@@ -34,8 +34,12 @@ export default class App extends Component {
   render() {
     const kittens = this.state.kittens;
 
+    let globalStyles = {
+      fontFamily: 'Helvetica'
+    };
+
     return (
-      <div className="app">
+      <div style={globalStyles} className="app">
         <KittenBox onEdit={this.onEdit} onDelete={this.deleteKitten} kittens={kittens} />
         <KittenInput addKitten={this.addKitten} />
       </div>

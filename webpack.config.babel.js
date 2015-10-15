@@ -35,7 +35,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlwebpackPlugin({
-      title: 'Kanban app'
+      title: 'Kitten app'
     })
   ]
 };
