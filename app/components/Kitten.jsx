@@ -9,6 +9,7 @@ export default class Kitten extends Component {
     this.edit         = this.edit.bind(this);
     this.renderEdit   = this.renderEdit.bind(this);
     this.renderKitten = this.renderKitten.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
 
     this.state = {
       editing: false
@@ -21,6 +22,7 @@ export default class Kitten extends Component {
       return (
         <div key={index} className="kittenNode">
           { editing ? this.renderEdit(kitten, index) : this.renderKitten(kitten, index) }
+          <button id={kitten.id} onClick={this.handleDelete}>x</button>
         </div>
       );
     });
@@ -49,6 +51,9 @@ export default class Kitten extends Component {
         onKeyPress={this.checkEnter}
       />
     );
+  };
+  handleDelete(e) {
+    this.props.onDelete(e.target.id);
   };
   edit() {
     this.setState({
