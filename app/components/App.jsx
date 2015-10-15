@@ -7,6 +7,10 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
+    this.findKitten = this.findKitten.bind(this);
+    this.addKitten  = this.addKitten.bind(this);
+    this.onEdit     = this.onEdit.bind(this);
+
     this.state = {
       kittens: [
         {
@@ -31,10 +35,29 @@ export default class App extends Component {
 
     return (
       <div className="app">
-        <KittenBox kittens={kittens} />
+        <KittenBox onEdit={this.onEdit} kittens={kittens} />
         <KittenInput addKitten={this.addKitten} />
       </div>
     );
+  };
+  onEdit(id, type) {
+    let kittens = this.state.kittens;
+
+    const kitIndex = this.findKitten(id);
+
+    if(kitIndex !== -1) {
+      kittens[kitIndex].type = type;
+
+      this.setState({kittens});
+    } else {
+      console.warn('kit not found!!!!');
+    }
+  };
+  findKitten(id) {
+    const kittens = this.state.kittens;
+    const kitIndex = kittens.findIndex((kit) => kit.id === id);
+
+    return (kitIndex >= 0) ? kitIndex : -1;
   };
   addKitten(kitten) {
     let newKitten = {
