@@ -1,7 +1,9 @@
 # React-Kittens
 
-A simple React CRUD app with kittens.
+A simple example React CRUD app that uses Webpack for asset bundling. Can be used as a boilerplate for React with component hot-loading.
 
-Uses Webpack for asset bundling:
+first `npm install`
+
+then
 
 `npm start` to run server.
